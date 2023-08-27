@@ -11,7 +11,14 @@ import SwiftUI
 struct emoji_dictionaryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            TabView{
+                EmojiListView()
+                    .tabItem { Label("List", systemImage: "list.dash") }
+                
+                EmojiGridView()
+                    .tabItem { Label("Grid", systemImage: "rectangle.grid.2x2.fill") }
+            }
         }
     }
 }
