@@ -13,7 +13,7 @@ struct ContentView: View {
     }
 }
 
-struct toDoItems: Identifiable
+struct ToDo: Identifiable
 {
     var id: UUID
     var text: String
