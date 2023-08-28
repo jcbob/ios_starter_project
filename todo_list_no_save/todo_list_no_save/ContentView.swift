@@ -8,8 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var toDoItems: [ToDo] = [ToDo(id: UUID(), text: "Read the Bible")]
+    
+    @State var toDoItemText = ""
+    
     var body: some View {
-        Text("hello there")
+        VStack{
+            HStack{
+                TextField("Brush your teeth...", text: $toDoItemText)
+                    .padding(.top)
+                    .padding(.leading)
+                
+                Spacer()
+                
+                Button(action: {
+                    let newToDo = ToDo(id: UUID(), text: toDoItemText)
+                    toDoItems.append(newToDo)
+                    toDoItemText = ""
+                }){
+                    Text("Add")
+                }
+                .padding(.trailing, 24)
+                .padding(.top)
+            }
+            
+            List(toDoItems){ listedToDoItem in
+                Text(listedToDoItem.text)
+            }
+        }
     }
 }
 
