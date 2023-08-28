@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var toDoItems: [ToDo] = [ToDo(id: UUID(), text: "Read the Bible")]
+    @State var toDoItems: [ToDo] = []
     
     @State var toDoItemText = ""
     
