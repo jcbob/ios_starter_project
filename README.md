@@ -1,3 +1,5 @@
 # Hello there
 ---
-this is my readme file, and I'm trying to see if this'll work at all. Kinda forgor how to use a git brur.
+This is my repository for beginner projects on iOS apps. I realise my skills with git and commit messages have a long way to go before they would be satisfactory
+
+
