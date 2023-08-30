@@ -12,6 +12,7 @@ struct AddToDoView: View
 {
     
     @State var toDoTitle: String = ""
+    //@FocusState var titleFocus: Bool
     
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
@@ -20,28 +21,37 @@ struct AddToDoView: View
     var body: some View
     {
         TextField("Add a To Do item...", text: $toDoTitle)
+            .font(.largeTitle)
+            //.focused($titleFocus)
+            //.submitLabel(.return)
+            //.onSubmit{ addToDo() }
             .padding()
             .toolbar
             {
-                Button(action:
-                        {
-                            let newToDo = ToDo(context: viewContext)
-                            newToDo.title = toDoTitle
-                            
-                            do
-                            {
-                                try viewContext.save()
-                            }
-                            catch
-                            {
-                                let nsError = error as NSError
-                                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                            }
-                        })
-                {
+                Button(action: addToDo) {
                     Text("Add to list")
                 }
             }
+            //.onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){titleFocus = true}
+    }
+    
+    
+    
+    func addToDo()
+    {
+        let newToDo = ToDo(context: viewContext)
+        newToDo.title = toDoTitle
+        
+        do
+        {
+            try viewContext.save()
+            presentationMode.wrappedValue.dismiss()
+        }
+        catch
+        {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }
 

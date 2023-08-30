@@ -21,7 +21,14 @@ struct ToDoListView: View {
             {
                 ForEach(toDos)
                 { listedToDo in
-                    Text(listedToDo.title!)
+                    NavigationLink(destination:
+                                    Text(listedToDo.title!)
+                                    .font(.largeTitle)
+                                    .padding())
+                    {
+                        Text(listedToDo.title!)
+                            .lineLimit(1)
+                    }
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -51,10 +58,11 @@ struct ToDoListView: View {
     }
 }
 
+
+
 struct ToDoListView_Previews: PreviewProvider {
     static var previews: some View {
         ToDoListView()//.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
-
 
