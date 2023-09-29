@@ -46,15 +46,12 @@ struct ToDoListView: View {
         }
     }
     
-    
+//    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { toDos[$0] }.forEach(viewContext.delete)
             try? viewContext.save()
         }
-        
-        
-        
     }
 }
 
